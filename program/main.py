@@ -80,7 +80,7 @@ class imgInformation():
                self.character_str.append(char_list)
         
 if __name__ == '__main__':
-     image_path = '.\img\c1.jpg'
+     image_path = '.\img\car4.jpg'
      frame = cv2.imread(image_path)
 
      img_information = imgInformation()
