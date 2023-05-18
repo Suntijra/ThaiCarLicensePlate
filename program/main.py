@@ -81,29 +81,43 @@ class imgInformation():
         
 if __name__ == '__main__':
      
-     video_name = str(input())
-     cap = cv2.VideoCapture(f"input/{video_name}")
-     
-     while(True):
-          ret, frame = cap.read()
-          
-          img_information = imgInformation()
-          
-          # predict
-          img_information.predict(frame)
-     
-          # write on frame
-          frame = img_information.writeOnFrame("font/font_thai.ttf", 40, frame)
-          
-          cv2.imshow('video', frame)
-          if cv2.waitKey(1) & 0xFF == ord('q'):
-               break
-          
-          img = frame
-          torch.cuda.empty_cache()
-          
-     cap.release()
+     image_path = './img/car4.jpg'
+     frame = cv2.imread(image_path)
+
+     img_information = imgInformation()
+
+     # predict
+     img_information.predict(frame)
+
+     # write on frame
+     frame = img_information.writeOnFrame("font/font_thai.ttf", 40, frame)
+
+     cv2.imshow('image', frame)
+     cv2.waitKey(0)
      cv2.destroyAllWindows()
+     # video_name = str()
+     # cap = cv2.VideoCapture(f"input/{video_name}")
+     
+     # while(True):
+     #      ret, frame = cap.read()
+          
+     #      img_information = imgInformation()
+          
+     #      # predict
+     #      img_information.predict(frame)
+     
+     #      # write on frame
+     #      frame = img_information.writeOnFrame("font/font_thai.ttf", 40, frame)
+          
+     #      cv2.imshow('video', frame)
+     #      if cv2.waitKey(1) & 0xFF == ord('q'):
+     #           break
+          
+     #      img = frame
+     #      torch.cuda.empty_cache()
+          
+     # cap.release()
+     # cv2.destroyAllWindows()
      
    
           

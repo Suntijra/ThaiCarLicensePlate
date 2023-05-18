@@ -12,14 +12,15 @@ def loadImages(data_path, size=(80,80)):
      for ic in range(len(classes)):
           filenames = os.listdir(f"{data_path}/{classes[ic]}")
           for ifile in range(len(filenames)):
-               filename = f"{data_path}/{classes[ic]}/{filenames[ifile]}"
-               print(f"\rload {filename:<100} ... {ifile+1}/{len(filenames):^10}",end=" "*100)
-               image = cv2.imread(filename)
-               image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-               image = cv2.resize(image, size)/255
-               image = np.dstack([image])
-               x.append(image)
-               t.append(ic)
+               if filenames[ifile] != ".DS_Store":
+                    filename = f"{data_path}/{classes[ic]}/{filenames[ifile]}"
+                    print(f"\rload {filename:<100} ... {ifile+1}/{len(filenames):^10}",end=" "*100)
+                    image = cv2.imread(filename)
+                    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                    image = cv2.resize(image, size)/255
+                    image = np.dstack([image])
+                    x.append(image)
+                    t.append(ic)
      x = np.array(x, dtype=np.float32)
      t = np.array(t, dtype=np.float32)
      return x, t
