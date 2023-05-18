@@ -33,23 +33,23 @@ if __name__ == '__main__':
      
      # process each class
      for ic in range(len(classes)):
-          
-          # list filenames
-          filenames = np.array(os.listdir(f"{data_path}/{classes[ic]}"))
+          if classes[ic] != ".DS_Store":
+               # list filenames
+               filenames = np.array(os.listdir(f"{data_path}/{classes[ic]}"))
 
-          # shuffle
-          filenames = filenames[np.random.permutation(len(filenames))]
-          
-          # split data
-          n_all = len(filenames)
-          n_train = int(np.floor(ratio[0]*n_all))
-          n_val = int(np.floor(ratio[1]*n_all))
-          n_test = n_all - n_train - n_val
-          train_filenames = filenames[:n_train]
-          val_filenames = filenames[n_train:(n_train+n_val)]
-          test_filenames = filenames[(n_train+n_val):]
-          
-          # copy images
-          copyImages(f"{data_path}/{classes[ic]}", f"{save_path}/train/{classes[ic]}", train_filenames)
-          copyImages(f"{data_path}/{classes[ic]}", f"{save_path}/val/{classes[ic]}", val_filenames)
-          copyImages(f"{data_path}/{classes[ic]}", f"{save_path}/test/{classes[ic]}", test_filenames)
+               # shuffle
+               filenames = filenames[np.random.permutation(len(filenames))]
+               
+               # split data
+               n_all = len(filenames)
+               n_train = int(np.floor(ratio[0]*n_all))
+               n_val = int(np.floor(ratio[1]*n_all))
+               n_test = n_all - n_train - n_val
+               train_filenames = filenames[:n_train]
+               val_filenames = filenames[n_train:(n_train+n_val)]
+               test_filenames = filenames[(n_train+n_val):]
+                    
+               # copy images
+               copyImages(f"{data_path}/{classes[ic]}", f"{save_path}/train/{classes[ic]}", train_filenames)
+               copyImages(f"{data_path}/{classes[ic]}", f"{save_path}/val/{classes[ic]}", val_filenames)
+               copyImages(f"{data_path}/{classes[ic]}", f"{save_path}/test/{classes[ic]}", test_filenames)
